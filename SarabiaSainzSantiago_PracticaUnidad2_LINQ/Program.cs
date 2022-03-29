@@ -308,6 +308,7 @@ namespace SarabiaSainzSantiago_PracticaUnidad2_LINQ
             var touristsData = from t in tourists
                                join tr in tours on t.TourCode equals tr.TourCode
                                group t by tr.TourCode into tourCount
+                               orderby tourCount.Count() descending
                                select new { Tour = (from tr in tours where tr.TourCode == tourCount.Key select tr.TourName).FirstOrDefault(), TourCount = tourCount.Count() };
             foreach( var t in touristsData)
             {
